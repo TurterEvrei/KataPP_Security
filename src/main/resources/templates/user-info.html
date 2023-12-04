@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>User info</h2>
+<div th:insert="template :: logout"></div>
+<hr>
+
+<form th:action="@{/admin/user}" th:object="${user}" th:method="${user.id != null}? 'patch' : 'post'">
+    <input type="hidden" th:field="*{id}" />
+    Email: <input type="email" th:field="*{email}" class="form-control"/><br><br>
+    Password: <input type="password" th:field="*{password}" class="form-control"/><br><br>
+    Name: <input type="text" th:field="*{name}" class="form-control"/><br><br>
+    Age: <input type="number" th:field="*{age}" th:value="${user.age}"/><br><br>
+    Active: <input type="checkbox" th:field="*{active}" th:checked="${user.isActive()}"><br><br>
+    Roles:
+    <th:block th:each="role: ${listRoles}">
+        <input type="checkbox" th:field="*{roles}"
+               th:text="${role}" th:value="${role}" class="m-2" />
+    </th:block><br><br>
+    <input type="submit" value="Ok">
+</form>
+
+</body>
+</html>

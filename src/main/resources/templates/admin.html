@@ -1,0 +1,41 @@
+<html>
+<body>
+
+<h2>Table of users</h2>
+<div th:insert="template :: logout"></div>
+<hr>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Actions</th>
+    </tr>
+    <th:block th:each="user : ${listUsers}">
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.roles}"></td>
+            <td>
+                <a th:href="@{/admin/user/{id}(id=${user.id})}">
+                    <button type="button">Update</button>
+                </a>
+                <form th:action="@{/admin/user(id=${user.id})}" th:method="'delete'">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<br>
+
+<input type="button" value="Add" onclick="window.location.href='/admin/user'">
+
+</body>
+</html>
