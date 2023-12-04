@@ -16,7 +16,6 @@ public class AdminController {
 
     private final UserService userService;
 
-    @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
     }
