@@ -10,7 +10,6 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.security.Principal;
 
 @Controller
-@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 public class UserController {
 
     private final UserService userService;
